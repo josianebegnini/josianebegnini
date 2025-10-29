@@ -264,5 +264,5 @@ Lá é possível:
 ## 🧑‍💻 Autor
 
 **Josiane Begnini**  
-📧 contato: [josiane.begnini@gmail.com]  
+📧 contato: [josianebegnini@gmail.com]  
 🚀 Projeto acadêmico de arquitetura de software - INFNET - Arquitetura de Plataformas - Java
