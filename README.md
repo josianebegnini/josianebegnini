@@ -218,7 +218,7 @@ GET /api/v1/pacientes/search?nome=João
   "pacienteId": 1,
   "medicoId": 3,
   "dataHora": "2025-11-10T09:30:00",
-  "tipoConsulta": "PRIMEIRA"
+  "tipoConsulta": "REMOTO"
 }
 ```
 
