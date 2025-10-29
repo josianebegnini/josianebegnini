@@ -28,7 +28,7 @@ Este projeto é um sistema REST desenvolvido em **Spring Boot (Java 17)** para g
 - **Jakarta Validation**
 - **Lombok**
 - **Swagger / Springdoc OpenAPI**
-- **Banco de Dados:** H2, MySQL ou PostgreSQL
+- **Banco de Dados:** H2
 
 ---
 
