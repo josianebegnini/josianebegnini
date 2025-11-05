@@ -12,7 +12,7 @@ import josiane.begnini.com.agendamento.consultas.exceptions.ResourceNotFoundExce
 import josiane.begnini.com.agendamento.consultas.mappers.PacienteMapper;
 import josiane.begnini.com.agendamento.consultas.models.Paciente;
 import josiane.begnini.com.agendamento.consultas.services.ConvenioService;
-import josiane.begnini.com.agendamento.consultas.services.PacienteService;
+import josiane.begnini.com.agendamento.consultas.services.PacienteServiceBase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PacienteController {
 
-    private final PacienteService pacienteService;
+    private final PacienteServiceBase pacienteService;
     private final PacienteMapper pacienteMapper;
     private final ConvenioService convenioService;
 
@@ -159,7 +159,7 @@ public class PacienteController {
             @PathVariable Long id,
             @RequestBody PacienteRequestDTO request) {
 
-        Paciente updatedPaciente = pacienteService.updateFromRequest(id, request);
+        Paciente updatedPaciente = pacienteService.update(id, request);
         return ResponseEntity.ok(pacienteMapper.toResponse(updatedPaciente));
     }
 

@@ -1,12 +1,12 @@
 package josiane.begnini.com.agendamento.consultas.dtos;
 
+import josiane.begnini.com.agendamento.consultas.models.Paciente;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-
 
 @Data
 @NoArgsConstructor
@@ -19,4 +19,20 @@ public class PacienteResponseDTO {
     private String telefone;
     private LocalDate dataNascimento;
     private ConvenioResponseDTO convenio;
+
+    // 🔹 Conversão auxiliar usada pelo PacienteServiceInMemory
+    public static PacienteResponseDTO fromEntity(Paciente paciente) {
+        if (paciente == null) return null;
+
+        return PacienteResponseDTO.builder()
+                .id(paciente.getId())
+                .nome(paciente.getNome())
+                .email(paciente.getEmail())
+                .telefone(paciente.getTelefone())
+                .dataNascimento(paciente.getDataNascimento())
+                .convenio(paciente.getConvenio() != null
+                        ? ConvenioResponseDTO.fromEntity(paciente.getConvenio())
+                        : null)
+                .build();
+    }
 }

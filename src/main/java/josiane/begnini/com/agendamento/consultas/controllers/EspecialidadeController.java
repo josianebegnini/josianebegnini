@@ -8,6 +8,7 @@ import josiane.begnini.com.agendamento.consultas.services.EspecialidadeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -45,7 +46,15 @@ public class EspecialidadeController {
     @ApiResponse(responseCode = "201", description = "Especialidade criada com sucesso")
     @ApiResponse(responseCode = "400", description = "Erro de validação")
     public ResponseEntity<EspecialidadeDTO> salvar(@RequestBody EspecialidadeDTO dto) {
-        return ResponseEntity.ok(service.salvar(dto));
+        EspecialidadeDTO criada = service.salvar(dto);
+
+        // Cria a URI do novo recurso criado
+        URI location = URI.create("/api/v1/especialidades/" + criada.getId());
+
+        // Retorna 201 Created + objeto criado + cabeçalho Location
+        return ResponseEntity
+                .created(location)
+                .body(criada);
     }
 
     @PutMapping("/{id}")
