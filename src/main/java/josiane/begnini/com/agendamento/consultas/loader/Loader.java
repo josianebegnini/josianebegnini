@@ -1,5 +1,6 @@
 package josiane.begnini.com.agendamento.consultas.loader;
 
+import josiane.begnini.com.agendamento.consultas.dtos.EnderecoRequestDTO;
 import josiane.begnini.com.agendamento.consultas.dtos.PacienteRequestDTO;
 import josiane.begnini.com.agendamento.consultas.services.MedicoService;
 import josiane.begnini.com.agendamento.consultas.services.PacienteService;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class Loader implements ApplicationRunner {
@@ -45,16 +48,32 @@ public class Loader implements ApplicationRunner {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.trim().isEmpty()) continue;
-                String[] parts = line.split(";");
-                if (parts.length < 4) continue;
 
-                PacienteRequestDTO dto = new PacienteRequestDTO(
-                        parts[0].trim(),
-                        parts[1].trim(),
-                        parts[2].trim(),
-                        LocalDate.parse(parts[3].trim()),
-                        null
-                );
+                // Exemplo esperado de linha:
+                // nome;email;telefone;dataNascimento;logradouro;numero;bairro;cidade;estado;cep
+                String[] parts = line.split(";");
+                if (parts.length < 10) {
+                    System.out.println("⚠️ Linha inválida: " + line);
+                    continue;
+                }
+
+                List<EnderecoRequestDTO> enderecos = new ArrayList<>();
+                EnderecoRequestDTO endereco = new EnderecoRequestDTO();
+                endereco.setLogradouro(parts[4].trim());
+                endereco.setNumero(parts[5].trim());
+                endereco.setBairro(parts[6].trim());
+                endereco.setCidade(parts[7].trim());
+                endereco.setEstado(parts[8].trim());
+                endereco.setCep(parts[9].trim());
+                enderecos.add(endereco);
+
+                PacienteRequestDTO dto = new PacienteRequestDTO();
+                dto.setNome(parts[0].trim());
+                dto.setEmail(parts[1].trim());
+                dto.setTelefone(parts[2].trim());
+                dto.setDataNascimento(LocalDate.parse(parts[3].trim()));
+                dto.setEnderecos(enderecos);
+                dto.setConvenioId(null); // Pode ser adicionado se quiser carregar convênios
 
                 if (useMemory) {
                     pacienteServiceInMemory.saveFromRequest(dto);
