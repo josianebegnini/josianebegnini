@@ -196,7 +196,7 @@ Content-Type: application/json
 
 {
   "nome": "João da Silva",
-  "email": "joao.silva@gmail.com",
+  "email": "joao.silva@mail.com",
   "cpf": "12345678901",
   "telefone": "11999999999",
   "convenioId": 1
