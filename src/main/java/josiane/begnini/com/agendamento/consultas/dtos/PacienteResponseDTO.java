@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,6 +20,7 @@ public class PacienteResponseDTO {
     private String telefone;
     private LocalDate dataNascimento;
     private ConvenioResponseDTO convenio;
+    private List<EnderecoResponseDTO> enderecos;
 
     // 🔹 Conversão auxiliar usada pelo PacienteServiceInMemory
     public static PacienteResponseDTO fromEntity(Paciente paciente) {
