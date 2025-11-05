@@ -1,5 +1,6 @@
 package josiane.begnini.com.agendamento.consultas.services;
 
+import jakarta.annotation.PostConstruct;
 import josiane.begnini.com.agendamento.consultas.dtos.PacienteRequestDTO;
 import josiane.begnini.com.agendamento.consultas.exceptions.BusinessException;
 import josiane.begnini.com.agendamento.consultas.exceptions.ResourceNotFoundException;
@@ -9,6 +10,8 @@ import josiane.begnini.com.agendamento.consultas.models.Paciente;
 import josiane.begnini.com.agendamento.consultas.repositories.ConvenioRepository;
 import josiane.begnini.com.agendamento.consultas.repositories.PacienteRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,13 +19,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class PacienteService {
+public class PacienteService implements PacienteServiceBase{
 
     private final PacienteRepository pacienteRepository;
     private final ConvenioRepository convenioRepository;
     private final PacienteMapper pacienteMapper;
+
+    @Autowired
+    public PacienteService(PacienteRepository pacienteRepository, PacienteMapper pacienteMapper, ConvenioRepository convenioRepository) {
+        this.pacienteRepository = pacienteRepository;
+        this.pacienteMapper = pacienteMapper;
+        this.convenioRepository = convenioRepository;
+    }
 
     public List<Paciente> findAll() {
         return pacienteRepository.findAll();
