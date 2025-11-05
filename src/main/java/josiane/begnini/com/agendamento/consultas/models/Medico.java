@@ -35,4 +35,15 @@ public class Medico {
         inverseJoinColumns = @JoinColumn(name = "especialidade_id")
     )
     private List<Especialidade> especialidades;
+
+    @Override
+    public String toString() {
+        return "Medico{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", crm='" + crm + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", especialidades=" + especialidades +
+                '}';
+    }
 }

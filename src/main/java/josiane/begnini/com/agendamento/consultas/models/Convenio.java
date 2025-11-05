@@ -25,4 +25,12 @@ public class Convenio {
 
     private String telefoneContato;
 
+    public  String toString() {
+        return "Convenio{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cobertura='" + cobertura + '\'' +
+                ", telefoneContato='" + telefoneContato + '\'' +
+                '}';
+    }
 }

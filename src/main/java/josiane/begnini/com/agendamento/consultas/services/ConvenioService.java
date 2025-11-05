@@ -61,4 +61,5 @@ public class ConvenioService {
             throw new BusinessException("Não é possível excluir o convênio, pois há pacientes vinculados a ele.");
         }
     }
+
 }

@@ -34,4 +34,15 @@ public class Agenda {
     @ManyToOne
     @JoinColumn(name = "medico_id", nullable = false)
     private Medico medico;
+
+    public String toString() {
+        return "Agenda{" +
+                "id=" + id +
+                ", dataHora=" + dataHora +
+                ", tipoConsulta=" + tipoConsulta +
+                ", status=" + status +
+                ", paciente=" + (paciente != null ? paciente.getNome() : "null") +
+                ", medico=" + (medico != null ? medico.getNome() : "null") +
+                '}';
+    }
 }
