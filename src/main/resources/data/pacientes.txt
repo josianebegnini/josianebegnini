@@ -1,3 +1,3 @@
-Maria Silva;maria@gmail.com;11999998888;1990-05-10
-João Souza;joao@gmail.com;11988887777;1985-12-22
-Carla Mendes;carla@gmail.com;11977776666;1992-07-15
+Maria Silva;maria@gmail.com;11999998888;1990-05-10;Rua das Flores;123;Centro;Blumenau;SC;89000-000
+João Souza;joao@gmail.com;11988887777;1985-12-22;Av. Brasil;456;Victor Konder;Blumenau;SC;89012-300
+Carla Mendes;carla@gmail.com;11977776666;1992-07-15;Rua São Paulo;789;Itoupava Seca;Blumenau;SC;89030-200

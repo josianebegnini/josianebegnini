@@ -6,6 +6,7 @@ import josiane.begnini.com.agendamento.consultas.exceptions.BusinessException;
 import josiane.begnini.com.agendamento.consultas.exceptions.ResourceNotFoundException;
 import josiane.begnini.com.agendamento.consultas.mappers.PacienteMapper;
 import josiane.begnini.com.agendamento.consultas.models.Convenio;
+import josiane.begnini.com.agendamento.consultas.models.Endereco;
 import josiane.begnini.com.agendamento.consultas.models.Paciente;
 import josiane.begnini.com.agendamento.consultas.repositories.ConvenioRepository;
 import josiane.begnini.com.agendamento.consultas.repositories.PacienteRepository;
@@ -60,6 +61,11 @@ public class PacienteService implements PacienteServiceBase{
                     .orElseThrow(() -> new ResourceNotFoundException(
                             "Convênio não encontrado com ID: " + request.getConvenioId()));
             paciente.setConvenio(convenio);
+        }
+        if (request.getEnderecos() != null && !request.getEnderecos().isEmpty()) {
+            List<Endereco> enderecos = pacienteMapper.toEnderecoEntityList(request.getEnderecos());
+            enderecos.forEach(e -> e.setPaciente(paciente));
+            paciente.setEnderecos(enderecos);
         }
 
         return pacienteRepository.save(paciente);
