@@ -195,12 +195,24 @@ POST /api/v1/pacientes
 Content-Type: application/json
 
 {
-  "nome": "João da Silva",
-  "email": "joao.silva@mail.com",
-  "cpf": "12345678901",
-  "telefone": "11999999999",
-  "convenioId": 1
+  "nome": "uva",  
+  "email": "uva@gmail.com",  
+  "telefone": "11999998888",  
+  "dataNascimento": "1990-05-10",  
+  "convenioId": 1,  
+  "enderecos": [  
+    {  
+      "logradouro": "Rua das Flores",  
+      "numero": "123",  
+      "complemento": 401,  
+      "bairro": "Centro",  
+      "cidade": "Blumenau",  
+      "estado": "SC",  
+      "cep": "89000-000"  
+    }  
+  ]  
 }
+
 ```
 
 #### 🔍 Busca por nome
@@ -239,7 +251,18 @@ GET /api/v1/pacientes/search?nome=João
   "cpf": "12345678900",
   "email": "maria@gmail.com",
   "telefone": "21999999999",
-  "convenioId": 2
+  "convenioId": 2,
+  "enderecos": [  
+    {  
+      "logradouro": "Rua das Flores",  
+      "numero": "123",  
+      "complemento": 401,  
+      "bairro": "Centro",  
+      "cidade": "Blumenau",  
+      "estado": "SC",  
+      "cep": "89000-000"  
+    }  
+  ]  
 }
 ```
 
